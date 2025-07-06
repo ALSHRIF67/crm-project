@@ -68,7 +68,7 @@ class TaskController extends Controller
         $image = $data['image'] ?? null;
         $data['created_by'] = Auth::id();
         $data['updated_by'] = Auth::id();
-        if ($image) {
+        if ($image instanceof \Illuminate\Http\UploadedFile) {
             $data['image_path'] = $image->store('task/' . Str::random(), 'public');
         }
         Task::create($data);
